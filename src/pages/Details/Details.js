@@ -1,10 +1,11 @@
 import * as S from "../../styles/DetailsStyled";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import { useParams } from "react-router";
 import { getMovieById } from "../../services/getMovieById";
 import { getMovieCredits } from "../../services/getMovieCredits";
 import { getTrailer } from "../../services/getTrailer";
-import { useState } from "react";
+import { getRecommendations } from "../../services/getRecommendations";
 import Header from "../../components/Header/Header";
 import { dateFormat } from "../../services/dateFormat";
 // Imports para rodar video do youtube
@@ -17,16 +18,31 @@ const Details = () => {
   const [movie, setMovie] = useState([]);
   const [credits, setCredits] = useState([]);
   const [trailer, setTrailer] = useState([]);
+  const [recommendations, setRecommendations] = useState([]);
+  const navigate = useNavigate();
   const { id } = useParams();
 
   useEffect(() => {getMovieById(id, setMovie)}, [id]);
   useEffect(() => {getMovieCredits(id, setCredits)}, [id]);
   useEffect(() => {getTrailer(id, setTrailer)}, [id]);
+  useEffect(() => {getRecommendations(id, setRecommendations)}, [id]);
 
-  const opts = {
-    height: '390',
-    width: '640',
+  const navigateMovie = (param) => {
+    navigate(`/details/${param}`)
+    window.location.reload();
+  }
+
+  let opts = {
+    height: '460',
+    width: '940'
   };
+
+  if (window.screen.width <= 1152) {
+    opts = {
+      height: '360',
+      width: '400'
+    }
+  }
 
   // Variáveis data de lançamento e país de produção
   let releaseYear = movie.release_date ? movie.release_date.slice(0,4) : undefined
@@ -70,6 +86,20 @@ const Details = () => {
       </S.CardCaster>
     )
   })
+
+  const recommendationsMap = recommendations && recommendations.map((recommendation, index) => {
+    if (index < 6) {
+      return (
+        <S.RecommendationCard key={recommendation.id}>
+          <S.MovieImg onClick={() => navigateMovie(recommendation.id)} src={`https://image.tmdb.org/t/p/original${recommendation.poster_path}`} alt="poster do filme"/>
+          <S.RecommendationTitle>{recommendation.original_title}</S.RecommendationTitle>
+          <S.MovieDate>{dateFormat(recommendation.release_date)}</S.MovieDate>
+        </S.RecommendationCard>
+      )
+    }
+    
+    return undefined
+  }) 
 
   let trailerKey = trailerFilter
 
@@ -136,6 +166,12 @@ const Details = () => {
         <S.YtDiv>
           <YouTube videoId={trailerKey} opts={opts}/>
         </S.YtDiv>
+        <S.DivTitleRecommendations>
+          <S.H3Recommendations>Recomendações</S.H3Recommendations>       
+          <S.RecommendationsDiv>
+            {recommendationsMap}
+          </S.RecommendationsDiv>
+        </S.DivTitleRecommendations>
     </>
   );
 };

@@ -152,6 +152,10 @@ export const CastSlider = styled.div`
     background: #adadad;
     border-radius: 10px;
   }
+
+  @media (max-width: 1152px) {
+    margin-left: 0%;
+  }
 `;
 
 export const CardCaster = styled.div`
@@ -177,5 +181,66 @@ export const CasterCharacter = styled.p`
 export const YtDiv = styled.div`
   display: flex;
   margin-top: 5%;
+  margin-bottom: 3%;
   margin-left: 6%;
+
+  @media (max-width: 1152px) {
+    justify-content: center;
+    margin-left: 0%;
+  }
+`;
+
+// * Estilização Title recomendações
+export const DivTitleRecommendations = styled.div`
+  display: flex;
+  flex-direction: column;
 `
+
+export const H3Recommendations = styled.h3`
+  margin-left: 5.3%;
+`
+
+
+// * Estilização div de recomendações
+export const RecommendationsDiv = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 30px;
+`;
+
+// * Card de cada filme
+export const RecommendationCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 300px;
+  text-align: start;
+  padding-bottom: 30px;
+`;
+
+// * Poster do filme
+export const MovieImg = styled.img`
+  width: 196px;
+  height: 274px;
+  border-radius: 5px;
+  cursor: pointer;
+`;
+
+// * Titulo do filme
+export const RecommendationTitle = styled.p`
+  font-size: 16px;
+  font-weight: 700;
+  width: 179px;
+`;
+
+// * Data do filme
+export const MovieDate = styled.p`
+  margin-top: -10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #646464;
+  width: 180px;
+  text-align: start;
+`;
