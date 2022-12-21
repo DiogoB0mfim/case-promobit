@@ -180,7 +180,8 @@ export const CasterCharacter = styled.p`
 // * Estilização div do youtube
 export const YtDiv = styled.div`
   display: flex;
-  margin-top: 5%;
+  flex-direction: column;
+  margin-top: 3%;
   margin-bottom: 3%;
   margin-left: 6%;
 
@@ -194,12 +195,16 @@ export const YtDiv = styled.div`
 export const DivTitleRecommendations = styled.div`
   display: flex;
   flex-direction: column;
-`
+`;
 
 export const H3Recommendations = styled.h3`
   margin-left: 5.3%;
-`
 
+  @media (max-width: 1152px) {
+    text-align: center;
+    margin-left: 0%;
+  }
+`;
 
 // * Estilização div de recomendações
 export const RecommendationsDiv = styled.div`

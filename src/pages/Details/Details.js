@@ -139,7 +139,7 @@ const Details = () => {
                   <S.DivSynopsisP>{movie.overview}</S.DivSynopsisP>
                 </S.DivSynopsis>
                   <S.DivCast>
-                    <div>
+                    <div>  
                       <div>
                           <S.PCast><b>{charactersFilter ? charactersFilter[0].name : "sem informações do personagem"}</b></S.PCast>
                           <S.PCastJob>Character</S.PCastJob>
@@ -164,6 +164,7 @@ const Details = () => {
           {castMap}
         </S.CastSlider>
         <S.YtDiv>
+          <h3>Trailer</h3> 
           <YouTube videoId={trailerKey} opts={opts}/>
         </S.YtDiv>
         <S.DivTitleRecommendations>
