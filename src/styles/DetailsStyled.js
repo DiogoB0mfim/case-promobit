@@ -186,7 +186,7 @@ export const YtDiv = styled.div`
   margin-left: 6%;
 
   @media (max-width: 1152px) {
-    justify-content: center;
+    align-items: center;
     margin-left: 0%;
   }
 `;
