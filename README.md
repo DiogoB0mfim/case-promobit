@@ -21,7 +21,6 @@
 <br/>
 
 > 🖥 Imagens 
-<br/>
 
 <a href="https://imgur.com/ndF1ixe"><img src="https://i.imgur.com/ndF1ixe.png" title="source: imgur.com" /></a>
 <br/>
